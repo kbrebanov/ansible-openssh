@@ -4,3 +4,21 @@
 - name: Install OpenSSH package
   yum: name=openssh state=present
   tags: openssh
+
+- name: Create OpenSSH client configuration
+  template: >
+    src=ssh_config.j2
+    dest=/etc/ssh
+    owner=root
+    group=root
+    mode=0644
+  tags: openssh
+
+- name: Create OpenSSH server configuration
+  template: >
+    src=sshd_config.j2
+    dest=/etc/ssh
+    owner=root
+    group=root
+    mode=0600
+  tags: openssh
