@@ -1,2 +1,6 @@
 ---
 # tasks file for openssh
+
+- name: Install OpenSSH package
+  yum: name=openssh state=present
+  tags: openssh
