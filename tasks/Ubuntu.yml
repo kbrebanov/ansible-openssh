@@ -1,0 +1,20 @@
+---
+# tasks file for openssh (Ubuntu specific)
+
+- name: Install OpenSSH packages
+  apt: name={{ item }} state=present update_cache=yes
+  with_items:
+    - openssh-client
+    - openssh-server
+  tags: openssh
+
+- name: Create OpenSSH server configuration
+  template: >
+    src=sshd_config_{{ ansible_distribution }}.j2
+    dest=/etc/ssh/sshd_config
+    owner=root
+    group=root
+    mode=0644
+  notify:
+    - restart openssh ubuntu
+  tags: openssh

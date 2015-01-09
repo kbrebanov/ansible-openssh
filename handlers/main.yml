@@ -1,2 +1,8 @@
 ---
 # handlers file for openssh
+
+- name: restart openssh ubuntu
+  service: name=ssh state=restarted
+
+- name: restart openssh centos
+  service: name=sshd state=restarted
