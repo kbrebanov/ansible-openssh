@@ -16,8 +16,19 @@
 - name: Create OpenSSH client configuration
   template: >
     src=ssh_config_{{ ansible_distribution }}.j2
-    dest=/etc/ssh/ssh_config
-    owner=root
-    group=root
-    mode=0644
+    dest="{{ openssh_client_config_file }}"
+    owner="{{ openssh_client_config_file_owner }}"
+    group="{{ openssh_client_config_file_group }}"
+    mode="{{ openssh_client_config_file_mode }}"
+  tags: openssh
+
+- name: Create OpenSSH server configuration
+  template: >
+    src=sshd_config_{{ ansible_distribution }}.j2
+    dest="{{ openssh_server_config_file }}"
+    owner="{{ openssh_server_config_file_owner }}"
+    group="{{ openssh_server_config_file_group }}"
+    mode="{{ openssh_server_config_file_mode }}"
+  notify:
+    - restart openssh
   tags: openssh

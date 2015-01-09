@@ -1,17 +1,7 @@
 ---
 # tasks file for openssh (CentOS specific)
 
-- name: Install OpenSSH package
-  yum: name=openssh state=present
-  tags: openssh
-
-- name: Create OpenSSH server configuration
-  template: >
-    src=sshd_config_{{ ansible_distribution }}.j2
-    dest=/etc/ssh/sshd_config
-    owner=root
-    group=root
-    mode=0600
-  notify:
-    - restart openssh centos
+- name: Install OpenSSH
+  yum: name={{ item }} state=present
+  with_items: openssh_packages
   tags: openssh

@@ -1,2 +1,9 @@
 ---
 # vars file for openssh (Ubuntu specific)
+
+openssh_packages:
+  - openssh-client
+  - openssh-server
+openssh_service_name: ssh
+
+openssh_server_config_file_mode: "0644"

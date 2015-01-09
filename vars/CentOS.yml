@@ -1,2 +1,5 @@
 ---
 # vars file for openssh (CentOS specific)
+
+openssh_packages:
+  - openssh
