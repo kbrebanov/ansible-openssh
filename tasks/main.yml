@@ -32,3 +32,7 @@
   notify:
     - restart openssh
   tags: openssh
+
+- name: Start OpenSSH service and enable on boot
+  service: name={{ openssh_service_name }} state=started enabled=yes
+  tags: openssh
