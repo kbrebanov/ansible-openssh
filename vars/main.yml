@@ -1,2 +1,82 @@
 ---
 # vars file for openssh
+
+openssh_server_accept_env: []
+openssh_server_address_family: any
+openssh_server_allow_agent_forwarding: 'yes'
+openssh_server_allow_tcp_forwarding: 'yes'
+openssh_server_authorized_keys_file: '.ssh/authorized_keys .ssh/authorized_keys2'
+openssh_server_authorized_principals_file: 'none'
+openssh_server_challenge_response_authentication: 'yes'
+openssh_server_chroot_directory: 'none'
+openssh_server_ciphers: 'aes128-ctr,aes192-ctr,aes256-ctr,arcfour256,arcfour128,aes128-gcm@openssh.com,aes256-gcm@openssh.com,chacha20-poly1305@openssh.com,aes128-cbc,3des-cbc,blowfish-cbc,cast128-cbc,aes192-cbc,aes256-cbc,arcfour'
+openssh_server_client_alive_count_max: 3
+openssh_server_client_alive_interval: 0
+openssh_server_compression: delayed
+openssh_server_gateway_ports: 'no'
+openssh_server_gssapi_authentication: 'no'
+openssh_server_gssapi_cleanup_credentials: 'yes'
+openssh_server_gssapi_key_exchange: 'no'
+openssh_server_gssapi_strict_acceptor_check: 'yes'
+openssh_server_gssapi_store_credentials_on_rekey: 'no'
+openssh_server_hostbased_authentication: 'no'
+openssh_server_hostbased_uses_name_from_packet_only: 'no'
+openssh_server_hostkeys_protocol_1:
+  - /etc/ssh/ssh_host_key
+openssh_server_hostkeys_protocol_2:
+  - /etc/ssh/ssh_host_rsa_key
+  - /etc/ssh/ssh_host_dsa_key
+  - /etc/ssh/ssh_host_ecdsa_key
+  - /etc/ssh/ssh_host_ed25519_key
+openssh_server_ignore_rhosts: 'yes'
+openssh_server_ignore_user_known_hosts: 'no'
+openssh_server_ipqos: 'lowdelay throughput'
+openssh_server_kdb_interactive_authentication: 'yes'
+openssh_server_kerberos_authentication: 'no'
+openssh_server_kerberos_get_afs_token: 'no'
+openssh_server_kerberos_or_local_passwd: 'yes'
+openssh_server_kerberos_ticket_cleanup: 'yes'
+openssh_server_kex_algorithms: 'curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group-exchange-sha1,diffie-hellman-group14-sha1,diffie-hellman-group1-sha1'
+openssh_server_key_regeneration_interval: 3600
+openssh_server_listen_addresses:
+  - 0.0.0.0
+  - '::'
+openssh_server_login_grace_time: 120
+openssh_server_log_level: INFO
+openssh_server_macs: 'hmac-md5-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-ripemd160-etm@openssh.com,hmac-sha1-96-etm@openssh.com,hmac-md5-96-etm@openssh.com,hmac-md5,hmac-sha1,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-ripemd160,hmac-sha1-96,hmac-md5-96'
+openssh_server_max_auth_tries: 6
+openssh_server_max_sessions: 10
+openssh_server_max_startups: '10:30:100'
+openssh_server_password_authentication: 'yes'
+openssh_server_permit_empty_passwords: 'no'
+openssh_server_permit_open: 'any'
+openssh_server_permit_root_login: 'yes'
+openssh_server_permit_tunnel: 'no'
+openssh_server_permit_tty: 'yes'
+openssh_server_permit_user_environment: 'no'
+openssh_server_pid_file: '/var/run/sshd.pid'
+openssh_server_port: 22
+openssh_server_print_last_log: 'yes'
+openssh_server_print_motd: 'yes'
+openssh_server_protocol: 2
+openssh_server_pubkey_authentication: 'yes'
+openssh_server_rekey_limit: 'default none'
+openssh_server_rhosts_rsa_authentication: 'no'
+openssh_server_rsa_authentication: 'yes'
+openssh_server_key_bits: 1024
+openssh_server_strict_modes: 'yes'
+openssh_server_subsystem: 'sftp /usr/lib/openssh/sftp-server'
+openssh_server_syslog_facility: AUTH
+openssh_server_tcp_keep_alive: 'yes'
+openssh_server_use_dns: 'yes'
+openssh_server_use_login: 'no'
+openssh_server_use_pam: 'no'
+openssh_server_use_privilege_separation: 'yes'
+openssh_server_version_addendum: 'none'
+openssh_server_x11_display_offset: 10
+openssh_server_x11_forwarding: 'no'
+openssh_server_x11_use_localhost: 'yes'
+openssh_server_xauth_location: '/usr/bin/xauth'
+
+
+openssh_server_authorized_keys_command_run_as: nobody

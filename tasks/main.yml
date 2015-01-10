@@ -24,7 +24,7 @@
 
 - name: Create OpenSSH server configuration
   template: >
-    src=sshd_config_{{ ansible_distribution }}.j2
+    src=sshd_config.j2
     dest="{{ openssh_server_config_file }}"
     owner="{{ openssh_server_config_file_owner }}"
     group="{{ openssh_server_config_file_group }}"
