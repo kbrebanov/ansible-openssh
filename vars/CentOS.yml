@@ -3,7 +3,7 @@
 
 openssh_packages:
   - openssh
-
+openssh_service_name: sshd
 openssh_server_accept_env:
   - 'LANG LC_CTYPE LC_NUMERIC LC_TIME LC_COLLATE LC_MONETARY LC_MESSAGES'
   - 'LC_PAPER LC_NAME LC_ADDRESS LC_TELEPHONE LC_MEASUREMENT'
