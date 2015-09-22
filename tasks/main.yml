@@ -13,6 +13,13 @@
   when: ansible_distribution == "Ubuntu"
   tags: openssh
 
+- name: Create SFTP system group
+  group: >
+    name={{ openssh_server_sftp_group }}
+    system=yes
+    state=present
+  tags: openssh
+
 - name: Create OpenSSH client configuration
   template: >
     src=ssh_config_{{ ansible_distribution }}.j2

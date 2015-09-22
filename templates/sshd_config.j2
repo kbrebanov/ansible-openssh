@@ -101,3 +101,11 @@ X11DisplayOffset {{ openssh_server_x11_display_offset }}
 X11Forwarding {{ openssh_server_x11_forwarding }}
 X11UseLocalhost {{ openssh_server_x11_use_localhost }}
 XAuthLocation {{ openssh_server_xauth_location }}
+
+Match Group {{ openssh_server_sftp_group }}
+  {% if openssh_server_sftp_chroot_directory != '' -%}
+  ChrootDirectory {{ openssh_server_sftp_chroot_directory }}
+  {% endif -%}
+  AllowTCPForwarding no
+  X11Forwarding no
+  ForceCommand {{ openssh_server_subsystem.split(' ')[1] }}
