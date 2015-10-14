@@ -6,15 +6,19 @@ openssh_packages:
   - openssh-server
 openssh_service_name: ssh
 
-openssh_server_config_file_mode: "0644"
-
 openssh_server_accept_env:
-  - 'LANG LC_*'
-openssh_server_authorized_keys_file: '%h/.ssh/authorized_keys'
-openssh_server_challenge_response_authentication: 'no'
-openssh_server_ignore_user_known_hosts: 'yes'
-openssh_server_permit_root_login: without-password
-openssh_server_print_motd: 'no'
-openssh_server_use_dns: 'no'
-openssh_server_use_pam: 'yes'
-openssh_server_x11_forwarding: 'yes'
+  - "LANG LC_*"
+openssh_server_authorized_keys_file:
+  - "%h/.ssh/authorized_keys"
+openssh_server_challenge_response_authentication: "no"
+openssh_server_ignore_user_known_hosts: "yes"
+openssh_server_pid_file: "/var/run/sshd.pid"
+openssh_server_print_motd: "no"
+openssh_server_subsystem: "sftp /usr/lib/openssh/sftp-server"
+openssh_server_use_pam: "yes"
+openssh_server_x11_forwarding: "yes"
+
+openssh_client_gssapi_authentication: "yes"
+openssh_client_hash_known_hosts: "yes"
+openssh_client_send_env:
+  - "LANG LC_*"

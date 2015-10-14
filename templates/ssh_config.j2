@@ -1,0 +1,108 @@
+# {{ ansible_managed }}
+
+# See the ssh_config(5) man page for details
+
+Host *
+    AddressFamily {{ openssh_client_address_family }}
+    BatchMode {{ openssh_client_batch_mode }}
+{% if openssh_client_bind_address %}
+    BindAddress {{ openssh_client_bind_address }}
+{% endif %}
+{% if openssh_client_canonical_domains %}
+    CanonicalDomains {{ openssh_client_canonical_domains | join(" ") }}
+{% endif %}
+    CanonicalizeFallbackLocal {{ openssh_client_canonicalize_fallback_local }}
+    CanonicalizeHostname {{ openssh_client_canonicalize_hostname }}
+    CanonicalizeMaxDots {{ openssh_client_canonicalize_max_dots }}
+{% if openssh_client_canonicalize_permitted_cnames %}
+    CanonicalizePermittedCNAMEs {{ openssh_client_canonicalize_permitted_cnames | join(",") }}
+{% endif %}
+    ChallengeResponseAuthentication {{ openssh_client_challenge_response_authentication }}
+    CheckHostIP {{ openssh_client_check_host_ip }}
+    Cipher {{ openssh_client_cipher }}
+    Ciphers {{ openssh_client_ciphers | join(",") }}
+    ClearAllForwardings {{ openssh_client_clear_all_forwardings }}
+    Compression {{ openssh_client_compression }}
+    CompressionLevel {{ openssh_client_compression_level }}
+    ConnectionAttempts {{ openssh_client_connection_attempts }}
+{# ConnectTimeout #}
+    ControlMaster {{ openssh_client_control_master }}
+{% if openssh_client_control_path %}
+    ControlPath {{ openssh_client_control_path }}
+{% endif %}
+    ControlPersist {{ openssh_client_control_persist }}
+{# DynamicForward #}
+    EnableSSHKeysign {{ openssh_client_enable_ssh_keysign }}
+    EscapeChar {{ openssh_client_escape_char }}
+    ExitOnForwardFailure {{ openssh_client_exit_on_forward_failure }}
+    ForwardAgent {{ openssh_client_forward_agent }}
+    ForwardX11 {{ openssh_client_forward_x11 }}
+    ForwardX11Timeout {{ openssh_client_forward_x11_timeout }}
+    ForwardX11Trusted {{ openssh_client_forward_x11_trusted }}
+    GatewayPorts {{ openssh_client_gateway_ports }}
+    GlobalKnownHostsFile {{ openssh_client_global_known_hosts_file | join(" ") }}
+    GSSAPIAuthentication {{ openssh_client_gssapi_authentication }}
+    GSSAPIKeyExchange {{ openssh_client_gssapi_key_exchange }}
+{% if openssh_client_gssapi_client_identity %}
+    GSSAPIClientIdentity {{ openssh_client_gssapi_client_identity }}
+{% endif %}
+{% if openssh_client_gssapi_server_identity %}
+    GSSAPIServerIdentity {{ openssh_client_gssapi_server_identity }}
+{% endif %}
+    GSSAPIDelegateCredentials {{ openssh_client_gssapi_delegate_credentials }}
+    GSSAPIRenewalForcesRekey {{ openssh_client_gssapi_renewal_forces_rekey }}
+    GSSAPITrustDns {{ openssh_client_gssapi_trust_dns }}
+    HashKnownHosts {{ openssh_client_hash_known_hosts }}
+    HostbasedAuthentication {{ openssh_client_hostbased_authentication }}
+    HostKeyAlgorithms {{ openssh_client_host_key_algorithms | join(",") }}
+{# HostKeyAlias #}
+{# HostName #}
+    IdentitiesOnly {{ openssh_client_identities_only }}
+{% for identity in openssh_client_identity_file_protocol_1 %}
+    IdentityFile {{ identity }}
+{% endfor %}
+{% for identity in openssh_client_identity_file_protocol_2 %}
+    IdentityFile {{ identity }}
+{% endfor %}
+{# IgnoreUnknown #}
+    IPQoS {{ openssh_client_ipqos }}
+    KbdInteractiveAuthentication {{ openssh_client_kbd_interactive_authentication }}
+{# KbdInteractiveDevices #}
+    KexAlgorithms {{ openssh_client_kex_algorithms | join(",") }}
+{% if openssh_client_local_command %}
+    LocalCommand {{ openssh_client_local_command }}
+{% endif %}
+{# LocalForward #}
+    LogLevel {{ openssh_client_log_level }}
+    MACs {{ openssh_client_macs | join(",") }}
+    NoHostAuthenticationForLocalhost {{ openssh_client_no_host_authentication_for_locahost }}
+    NumberOfPasswordPrompts {{ openssh_client_number_of_password_prompts }}
+    PasswordAuthentication {{ openssh_client_password_authentication }}
+    PermitLocalCommand {{ openssh_client_permit_local_command }}
+{# PKCS11Provider #}
+    Port {{ openssh_client_port }}
+    PreferredAuthentications {{ openssh_client_preferred_authentications | join(",") }}
+    Protocol {{ openssh_client_protocol }}
+    ProxyCommand {{ openssh_client_proxy_command }}
+    ProxyUseFdpass {{ openssh_client_proxy_use_fdpass }}
+    PubkeyAuthentication {{ openssh_client_pubkey_authentication }}
+    RekeyLimit {{ openssh_client_rekey_limit }}
+{# RemoteForward #}
+{# RequestTTY #}
+    RhostsRSAAuthentication {{ openssh_client_rhosts_rsa_authentication }}
+    RSAAuthentication {{ openssh_client_rsa_authentication }}
+{% for env in openssh_client_send_env %}
+    SendEnv {{ env }}
+{% endfor %}
+    ServerAliveCountMax {{ openssh_client_server_alive_count_max }}
+{# ServerAliveInterval #}
+    StrictHostKeyChecking {{ openssh_client_strict_host_key_checking }}
+    TCPKeepAlive {{ openssh_client_tcp_keep_alive }}
+    Tunnel {{ openssh_client_tunnel }}
+    TunnelDevice {{ openssh_client_tunnel_device }}
+    UsePrivilegedPort {{ openssh_client_use_privileged_port }}
+{# User #}
+    UserKnownHostsFile {{ openssh_client_user_known_hosts_file | join(" ") }}
+    VerifyHostKeyDNS {{ openssh_client_verify_host_key_dns }}
+    VisualHostKey {{ openssh_client_visual_host_key }}
+    XAuthLocation {{ openssh_client_xauth_location }}

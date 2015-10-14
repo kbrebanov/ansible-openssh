@@ -4,21 +4,55 @@
 openssh_packages:
   - openssh
 openssh_service_name: sshd
+openssh_server_config_file_mode: "0600"
+
 openssh_server_accept_env:
-  - 'LANG LC_CTYPE LC_NUMERIC LC_TIME LC_COLLATE LC_MONETARY LC_MESSAGES'
-  - 'LC_PAPER LC_NAME LC_ADDRESS LC_TELEPHONE LC_MEASUREMENT'
-  - 'LC_IDENTIFICATION LC_ALL LANGUAGE'
-  - 'XMODIFIERS'
-openssh_server_authorized_keys_file: '.ssh/authorized_keys'
-openssh_server_challenge_response_authentication: 'no'
-openssh_server_ciphers: 'aes128-ctr,aes192-ctr,aes256-ctr,arcfour256,arcfour128,aes128-cbc,3des-cbc,blowfish-cbc,cast128-cbc,aes192-cbc,aes256-cbc,arcfour'
-openssh_server_gssapi_authentication: 'yes'
+  - "LANG LC_CTYPE LC_NUMERIC LC_TIME LC_COLLATE LC_MONETARY LC_MESSAGES"
+  - "LC_PAPER LC_NAME LC_ADDRESS LC_TELEPHONE LC_MEASUREMENT"
+  - "LC_IDENTIFICATION LC_ALL LANGUAGE"
+  - "XMODIFIERS"
+openssh_server_authorized_keys_file: ".ssh/authorized_keys"
+openssh_server_challenge_response_authentication: "no"
+openssh_server_ciphers:
+  - "aes128-ctr"
+  - "aes192-ctr"
+  - "aes256-ctr"
+  - "arcfour256"
+  - "arcfour128"
+  - "aes128-cbc"
+  - "3des-cbc"
+  - "blowfish-cbc"
+  - "cast128-cbc"
+  - "aes192-cbc"
+  - "aes256-cbc"
+  - "arcfour"
+openssh_server_gssapi_authentication: "yes"
 openssh_server_hostkeys_protocol_2:
-  - /etc/ssh/ssh_host_rsa_key
-  - /etc/ssh/ssh_host_dsa_key
-openssh_server_kex_algorithms: 'diffie-hellman-group-exchange-sha256,diffie-hellman-group-exchange-sha1,diffie-hellman-group14-sha1,diffie-hellman-group1-sha1'
-openssh_server_macs: 'hmac-md5,hmac-sha1,umac-64@openssh.com,hmac-ripemd160,hmac-sha1-96,hmac-md5-96,hmac-sha2-256,hmac-sha2-512'
-openssh_server_subsytem: 'sftp /usr/libexec/openssh/sftp-server'
-openssh_server_syslog_facility: AUTHPRIV
-openssh_server_use_dns: 'no'
-openssh_server_x11_forwarding: 'yes'
+  - "/etc/ssh/ssh_host_rsa_key"
+  - "/etc/ssh/ssh_host_dsa_key"
+openssh_server_kex_algorithms:
+  - "diffie-hellman-group-exchange-sha256"
+  - "diffie-hellman-group-exchange-sha1"
+  - "diffie-hellman-group14-sha1"
+  - "diffie-hellman-group1-sha1"
+openssh_server_macs:
+  - "hmac-md5"
+  - "hmac-sha1"
+  - "umac-64@openssh.com"
+  - "hmac-ripemd160"
+  - "hmac-sha1-96"
+  - "hmac-md5-96"
+  - "hmac-sha2-256"
+  - "hmac-sha2-512"
+openssh_server_subsytem: "sftp /usr/libexec/openssh/sftp-server"
+openssh_server_syslog_facility: "AUTHPRIV"
+openssh_server_use_dns: "no"
+openssh_server_x11_forwarding: "yes"
+
+openssh_client_forward_x11_trusted: "yes"
+openssh_client_gssapi_authentication: "yes"
+openssh_client_send_env:
+  - "LANG LC_CTYPE LC_NUMERIC LC_TIME LC_COLLATE LC_MONETARY LC_MESSAGES"
+  - "LC_PAPER LC_NAME LC_ADDRESS LC_TELEPHONE LC_MEASUREMENT"
+  - "LC_IDENTIFICATION LC_ALL LANGUAGE"
+  - "XMODIFIERS"

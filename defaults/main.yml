@@ -3,81 +3,276 @@
 
 openssh_server_accept_env: []
 openssh_server_address_family: any
-openssh_server_allow_agent_forwarding: 'yes'
-openssh_server_allow_tcp_forwarding: 'yes'
-openssh_server_authorized_keys_file: '.ssh/authorized_keys .ssh/authorized_keys2'
-openssh_server_authorized_principals_file: 'none'
-openssh_server_challenge_response_authentication: 'yes'
-openssh_server_chroot_directory: 'none'
-openssh_server_ciphers: 'aes128-ctr,aes192-ctr,aes256-ctr,arcfour256,arcfour128,aes128-gcm@openssh.com,aes256-gcm@openssh.com,chacha20-poly1305@openssh.com,aes128-cbc,3des-cbc,blowfish-cbc,cast128-cbc,aes192-cbc,aes256-cbc,arcfour'
+openssh_server_allow_agent_forwarding: "yes"
+openssh_server_allow_groups: []
+openssh_server_allow_tcp_forwarding: "yes"
+openssh_server_allow_users: []
+openssh_server_authentication_methods: []
+openssh_server_authorized_keys_command: ''
+openssh_server_authorized_keys_command_user: ''
+openssh_server_authorized_keys_file:
+  - ".ssh/authorized_keys"
+  - ".ssh/authorized_keys2"
+openssh_server_authorized_principals_file: "none"
+openssh_server_banner: "none"
+openssh_server_challenge_response_authentication: "yes"
+openssh_server_chroot_directory: ''
+openssh_server_ciphers:
+  - "aes128-ctr"
+  - "aes192-ctr"
+  - "aes256-ctr"
+  - "arcfour256"
+  - "arcfour128"
+  - "aes128-gcm@openssh.com"
+  - "aes256-gcm@openssh.com"
+  - "chacha20-poly1305@openssh.com"
+  - "aes128-cbc"
+  - "3des-cbc"
+  - "blowfish-cbc"
+  - "cast128-cbc"
+  - "aes192-cbc"
+  - "aes256-cbc"
+  - "arcfour"
 openssh_server_client_alive_count_max: 3
 openssh_server_client_alive_interval: 0
-openssh_server_compression: delayed
-openssh_server_gateway_ports: 'no'
-openssh_server_gssapi_authentication: 'no'
-openssh_server_gssapi_cleanup_credentials: 'yes'
-openssh_server_gssapi_key_exchange: 'no'
-openssh_server_gssapi_strict_acceptor_check: 'yes'
-openssh_server_gssapi_store_credentials_on_rekey: 'no'
-openssh_server_hostbased_authentication: 'no'
-openssh_server_hostbased_uses_name_from_packet_only: 'no'
+openssh_server_compression: "delayed"
+openssh_server_debian_banner: "yes"
+openssh_server_deny_groups: []
+openssh_server_deny_users: []
+openssh_server_force_command: ''
+openssh_server_gateway_ports: "no"
+openssh_server_gssapi_authentication: "no"
+openssh_server_gssapi_cleanup_credentials: "yes"
+openssh_server_gssapi_key_exchange: "no"
+openssh_server_gssapi_strict_acceptor_check: "yes"
+openssh_server_gssapi_store_credentials_on_rekey: "no"
+openssh_server_hostbased_authentication: "no"
+openssh_server_hostbased_uses_name_from_packet_only: "no"
+openssh_server_host_certificate: ''
 openssh_server_hostkeys_protocol_1:
-  - /etc/ssh/ssh_host_key
+  - "/etc/ssh/ssh_host_key"
 openssh_server_hostkeys_protocol_2:
-  - /etc/ssh/ssh_host_rsa_key
-  - /etc/ssh/ssh_host_dsa_key
-  - /etc/ssh/ssh_host_ecdsa_key
-  - /etc/ssh/ssh_host_ed25519_key
-openssh_server_ignore_rhosts: 'yes'
-openssh_server_ignore_user_known_hosts: 'no'
-openssh_server_ipqos: 'lowdelay throughput'
-openssh_server_kdb_interactive_authentication: 'yes'
-openssh_server_kerberos_authentication: 'no'
-openssh_server_kerberos_get_afs_token: 'no'
-openssh_server_kerberos_or_local_passwd: 'yes'
-openssh_server_kerberos_ticket_cleanup: 'yes'
-openssh_server_kex_algorithms: 'curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group-exchange-sha1,diffie-hellman-group14-sha1,diffie-hellman-group1-sha1'
+  - "/etc/ssh/ssh_host_rsa_key"
+  - "/etc/ssh/ssh_host_dsa_key"
+  - "/etc/ssh/ssh_host_ecdsa_key"
+  - "/etc/ssh/ssh_host_ed25519_key"
+openssh_server_host_key_agent: ''
+openssh_server_ignore_rhosts: "yes"
+openssh_server_ignore_user_known_hosts: "no"
+openssh_server_ipqos: "lowdelay throughput"
+openssh_server_kdb_interactive_authentication: "{{ openssh_server_challenge_response_authentication }}"
+openssh_server_kerberos_authentication: "no"
+openssh_server_kerberos_get_afs_token: "no"
+openssh_server_kerberos_or_local_passwd: "yes"
+openssh_server_kerberos_ticket_cleanup: "yes"
+openssh_server_kex_algorithms:
+  - "curve25519-sha256@libssh.org"
+  - "ecdh-sha2-nistp256"
+  - "ecdh-sha2-nistp384"
+  - "ecdh-sha2-nistp521"
+  - "diffie-hellman-group-exchange-sha256"
+  - "diffie-hellman-group-exchange-sha1"
+  - "diffie-hellman-group14-sha1"
+  - "diffie-hellman-group1-sha1"
 openssh_server_key_regeneration_interval: 3600
 openssh_server_listen_addresses:
-  - 0.0.0.0
-  - '::'
+  - "0.0.0.0"
+  - "::"
 openssh_server_login_grace_time: 120
-openssh_server_log_level: INFO
-openssh_server_macs: 'hmac-md5-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-ripemd160-etm@openssh.com,hmac-sha1-96-etm@openssh.com,hmac-md5-96-etm@openssh.com,hmac-md5,hmac-sha1,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-ripemd160,hmac-sha1-96,hmac-md5-96'
+openssh_server_log_level: "INFO"
+openssh_server_macs:
+  - "hmac-md5-etm@openssh.com"
+  - "hmac-sha1-etm@openssh.com"
+  - "umac-64-etm@openssh.com"
+  - "umac-128-etm@openssh.com"
+  - "hmac-sha2-256-etm@openssh.com"
+  - "hmac-sha2-512-etm@openssh.com"
+  - "hmac-ripemd160-etm@openssh.com"
+  - "hmac-sha1-96-etm@openssh.com"
+  - "hmac-md5-96-etm@openssh.com"
+  - "hmac-md5"
+  - "hmac-sha1"
+  - "umac-64@openssh.com"
+  - "umac-128@openssh.com"
+  - "hmac-sha2-256"
+  - "hmac-sha2-512"
+  - "hmac-ripemd160"
+  - "hmac-sha1-96"
+  - "hmac-md5-96"
 openssh_server_max_auth_tries: 6
 openssh_server_max_sessions: 10
-openssh_server_max_startups: '10:30:100'
-openssh_server_password_authentication: 'yes'
-openssh_server_permit_empty_passwords: 'no'
-openssh_server_permit_open: 'any'
-openssh_server_permit_root_login: 'yes'
-openssh_server_permit_tunnel: 'no'
-openssh_server_permit_tty: 'yes'
-openssh_server_permit_user_environment: 'no'
-openssh_server_pid_file: '/var/run/sshd.pid'
+openssh_server_max_startups: "10:30:100"
+openssh_server_password_authentication: "yes"
+openssh_server_permit_empty_passwords: "no"
+openssh_server_permit_open: "any"
+openssh_server_permit_root_login: "yes"
+openssh_server_permit_tunnel: "no"
+openssh_server_permit_tty: "yes"
+openssh_server_permit_user_environment: "no"
 openssh_server_port: 22
-openssh_server_print_last_log: 'yes'
-openssh_server_print_motd: 'yes'
+openssh_server_print_last_log: "yes"
+openssh_server_print_motd: "yes"
 openssh_server_protocol: 2
-openssh_server_pubkey_authentication: 'yes'
-openssh_server_rekey_limit: 'default none'
-openssh_server_rhosts_rsa_authentication: 'no'
-openssh_server_rsa_authentication: 'yes'
+openssh_server_pubkey_authentication: "yes"
+openssh_server_rekey_limit: "default none"
+openssh_server_revoked_keys: ''
+openssh_server_rhosts_rsa_authentication: "no"
+openssh_server_rsa_authentication: "yes"
 openssh_server_key_bits: 1024
 openssh_server_sftp_chroot_directory: ''
-openssh_server_sftp_group: 'sftponly'
-openssh_server_strict_modes: 'yes'
-openssh_server_subsystem: 'sftp /usr/lib/openssh/sftp-server'
-openssh_server_syslog_facility: AUTH
-openssh_server_tcp_keep_alive: 'yes'
-openssh_server_use_dns: 'yes'
-openssh_server_use_login: 'no'
-openssh_server_use_pam: 'no'
-openssh_server_use_privilege_separation: 'yes'
-openssh_server_version_addendum: 'none'
+openssh_server_sftp_group: "sftponly"
+openssh_server_strict_modes: "yes"
+openssh_server_subsystem: ''
+openssh_server_syslog_facility: "AUTH"
+openssh_server_tcp_keep_alive: "yes"
+openssh_server_trusted_ca_keys: ''
+openssh_server_use_dns: "yes"
+openssh_server_use_login: "no"
+openssh_server_use_pam: "no"
+openssh_server_use_privilege_separation: "yes"
+openssh_server_version_addendum: "none"
 openssh_server_x11_display_offset: 10
-openssh_server_x11_forwarding: 'no'
-openssh_server_x11_use_localhost: 'yes'
-openssh_server_xauth_location: '/usr/bin/xauth'
+openssh_server_x11_forwarding: "no"
+openssh_server_x11_use_localhost: "yes"
+openssh_server_xauth_location: "/usr/bin/xauth"
 
-openssh_server_authorized_keys_command_run_as: nobody
+openssh_client_address_family: "any"
+openssh_client_batch_mode: "no"
+openssh_client_bind_address: ''
+openssh_client_canonical_domains: []
+openssh_client_canonicalize_fallback_local: "yes"
+openssh_client_canonicalize_hostname: "no"
+openssh_client_canonicalize_max_dots: 1
+openssh_client_canonicalize_permitted_cnames: []
+openssh_client_challenge_response_authentication: "yes"
+openssh_client_check_host_ip: "yes"
+openssh_client_cipher: "3des"
+openssh_client_ciphers:
+  - "aes128-ctr"
+  - "aes192-ctr"
+  - "aes256-ctr"
+  - "arcfour256"
+  - "arcfour128"
+  - "aes128-gcm@openssh.com"
+  - "aes256-gcm@openssh.com"
+  - "chacha20-poly1305@openssh.com"
+  - "aes128-cbc"
+  - "3des-cbc"
+  - "blowfish-cbc"
+  - "cast128-cbc"
+  - "aes192-cbc"
+  - "aes256-cbc"
+  - "arcfour"
+openssh_client_clear_all_forwardings: "no"
+openssh_client_compression: "no"
+openssh_client_compression_level: 6
+openssh_client_connection_attempts: 1
+openssh_client_control_master: "no"
+openssh_client_control_path: ''
+openssh_client_control_persist: "no"
+openssh_client_enable_ssh_keysign: "no"
+openssh_client_escape_char: "~"
+openssh_client_exit_on_forward_failure: "no"
+openssh_client_forward_agent: "no"
+openssh_client_forward_x11: "no"
+openssh_client_forward_x11_timeout: "20m"
+openssh_client_forward_x11_trusted: "no"
+openssh_client_gateway_ports: "no"
+openssh_client_global_known_hosts_file:
+  - "/etc/ssh/ssh_known_hosts"
+  - "/etc/ssh/ssh_known_hosts2"
+openssh_client_gssapi_authentication: "no"
+openssh_client_gssapi_key_exchange: "no"
+openssh_client_gssapi_client_identity: ''
+openssh_client_gssapi_server_identity: ''
+openssh_client_gssapi_delegate_credentials: "no"
+openssh_client_gssapi_renewal_forces_rekey: "no"
+openssh_client_gssapi_trust_dns: "no"
+openssh_client_hash_known_hosts: "no"
+openssh_client_hostbased_authentication: "no"
+openssh_client_host_key_algorithms:
+  - "ecdsa-sha2-nistp256-cert-v01@openssh.com"
+  - "ecdsa-sha2-nistp384-cert-v01@openssh.com"
+  - "ecdsa-sha2-nistp521-cert-v01@openssh.com"
+  - "ssh-ed25519-cert-v01@openssh.com"
+  - "ssh-rsa-cert-v01@openssh.com"
+  - "ssh-dss-cert-v01@openssh.com"
+  - "ssh-rsa-cert-v00@openssh.com"
+  - "ssh-dss-cert-v00@openssh.com"
+  - "ecdsa-sha2-nistp256"
+  - "ecdsa-sha2-nistp384"
+  - "ecdsa-sha2-nistp521"
+  - "ssh-ed25519"
+  - "ssh-rsa"
+  - "ssh-dss"
+openssh_client_identities_only: "no"
+openssh_client_identity_file_protocol_1:
+  - "~/.ssh/identity"
+openssh_client_identity_file_protocol_2:
+  - "~/.ssh/id_dsa"
+  - "~/.ssh/id_ecdsa"
+  - "~/.ssh/id_ed25519"
+  - "~/.ssh/id_rsa"
+openssh_client_ipqos: "lowdelay throughput"
+openssh_client_kbd_interactive_authentication: "yes"
+openssh_client_kex_algorithms:
+  - "curve25519-sha256@libssh.org"
+  - "ecdh-sha2-nistp256"
+  - "ecdh-sha2-nistp384"
+  - "ecdh-sha2-nistp521"
+  - "diffie-hellman-group-exchange-sha256"
+  - "diffie-hellman-group-exchange-sha1"
+  - "diffie-hellman-group14-sha1"
+  - "diffie-hellman-group1-sha1"
+openssh_client_local_command: ''
+openssh_client_log_level: "INFO"
+openssh_client_macs:
+  - "hmac-md5-etm@openssh.com"
+  - "hmac-sha1-etm@openssh.com"
+  - "umac-64-etm@openssh.com"
+  - "umac-128-etm@openssh.com"
+  - "hmac-sha2-256-etm@openssh.com"
+  - "hmac-sha2-512-etm@openssh.com"
+  - "hmac-ripemd160-etm@openssh.com"
+  - "hmac-sha1-96-etm@openssh.com"
+  - "hmac-md5-96-etm@openssh.com"
+  - "hmac-md5"
+  - "hmac-sha1"
+  - "umac-64@openssh.com"
+  - "umac-128@openssh.com"
+  - "hmac-sha2-256"
+  - "hmac-sha2-512"
+  - "hmac-ripemd160"
+  - "hmac-sha1-96"
+  - "hmac-md5-96"
+openssh_client_no_host_authentication_for_locahost: "no"
+openssh_client_number_of_password_prompts: 3
+openssh_client_password_authentication: "yes"
+openssh_client_permit_local_command: "no"
+openssh_client_port: 22
+openssh_client_preferred_authentications:
+  - "gssapi-with-mic"
+  - "hostbased"
+  - "publickey"
+  - "keyboard-interactive"
+  - "password"
+openssh_client_protocol: 2
+openssh_client_proxy_command: "none"
+openssh_client_proxy_use_fdpass: "no"
+openssh_client_pubkey_authentication: "yes"
+openssh_client_rekey_limit: "default none"
+openssh_client_rhosts_rsa_authentication: "no"
+openssh_client_rsa_authentication: "yes"
+openssh_client_send_env: []
+openssh_client_server_alive_count_max: 3
+openssh_client_strict_host_key_checking: "ask"
+openssh_client_tcp_keep_alive: "yes"
+openssh_client_tunnel: "no"
+openssh_client_tunnel_device: "any:any"
+openssh_client_use_privileged_port: "no"
+openssh_client_user_known_hosts_file:
+  - "~/.ssh/known_hosts"
+  - "~/.ssh/known_hosts2"
+openssh_client_verify_host_key_dns: "no"
+openssh_client_visual_host_key: "no"
+openssh_client_xauth_location: "/usr/bin/xauth"

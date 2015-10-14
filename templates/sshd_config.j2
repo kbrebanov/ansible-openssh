@@ -1,32 +1,49 @@
 # {{ ansible_managed }}
 
-# See the sshd_config(5) manpage for details
+# See the sshd_config(5) man page for details
 
-{% for env_variables in openssh_server_accept_env %}
-AcceptEnv {{ env_variables }}
+{% for env in openssh_server_accept_env %}
+AcceptEnv {{ env }}
 {% endfor %}
 AddressFamily {{ openssh_server_address_family }}
 AllowAgentForwarding {{ openssh_server_allow_agent_forwarding }}
-#AllowGroups
+{% if openssh_server_allow_groups %}
+AllowGroups {{ openssh_server_allow_groups | join(" ") }}
+{% endif %}
 AllowTcpForwarding {{ openssh_server_allow_tcp_forwarding }}
-#AllowUsers
-{# AuthenticationMethods (not CentOS 6) #}
-#AuthorizedKeysCommand
-{# AuthorizedKeysCommandUser (not CentOS 6) #}
-{# AuthorizedKeysCommandRunAs (only CentOS 6) #}
-AuthorizedKeysFile {{ openssh_server_authorized_keys_file }}
+{% if openssh_server_allow_users %}
+AllowUsers {{ openssh_server_allow_users | join(" ") }}
+{% endif %}
+{% if openssh_server_authentication_methods %}
+AuthenticationMethods {{ openssh_server_authentication_methods | join(",") }}
+{% endif %}
+{% if openssh_server_authorized_keys_command %}
+AuthorizedKeysCommand {{ openssh_server_authorized_keys_command }}
+{% endif %}
+{% if openssh_server_authorized_keys_command_user %}
+AuthorizedKeysCommandUser {{ openssh_server_authorized_keys_command_user }}
+{% endif %}
+AuthorizedKeysFile {{ openssh_server_authorized_keys_file | join (" ") }}
 AuthorizedPrincipalsFile {{ openssh_server_authorized_principals_file }}
-#Banner
+Banner {{ openssh_server_banner }}
 ChallengeResponseAuthentication {{ openssh_server_challenge_response_authentication }}
+{% if openssh_server_chroot_directory %}
 ChrootDirectory {{ openssh_server_chroot_directory }}
-Ciphers {{ openssh_server_ciphers }}
+{% endif %}
+Ciphers {{ openssh_server_ciphers | join(",") }}
 ClientAliveCountMax {{ openssh_server_client_alive_count_max }}
 ClientAliveInterval {{ openssh_server_client_alive_interval }}
 Compression {{ openssh_server_compression }}
-#DebianBanner {# Debian derived only #}
-#DenyGroups
-#DenyUsers
-#ForceCommand
+DebianBanner {{ openssh_server_debian_banner }}
+{% if openssh_server_deny_groups %}
+DenyGroups {{ openssh_server_deny_groups | join(" ") }}
+{% endif %}
+{% if openssh_server_deny_users %}
+DenyUsers {{ openssh_server_deny_users | join(" ") }}
+{% endif %}
+{% if openssh_server_force_command %}
+ForceCommand {{ openssh_server_force_command }}
+{% endif %}
 GatewayPorts {{ openssh_server_gateway_ports }}
 GSSAPIAuthentication {{ openssh_server_gssapi_authentication }}
 GSSAPIKeyExchange {{ openssh_server_gssapi_key_exchange }}
@@ -35,7 +52,9 @@ GSSAPIStrictAcceptorCheck {{ openssh_server_gssapi_strict_acceptor_check }}
 GSSAPIStoreCredentialsOnRekey {{ openssh_server_gssapi_store_credentials_on_rekey }}
 HostbasedAuthentication {{ openssh_server_hostbased_authentication }}
 HostbasedUsesNameFromPacketOnly {{ openssh_server_hostbased_uses_name_from_packet_only }}
-#HostCertificate
+{% if openssh_server_host_certificate %}
+HostCertificate {{ openssh_server_host_certificate }}
+{% endif %}
 # HostKeys for protocol version 1
 {% for hostkey in openssh_server_hostkeys_protocol_1 %}
 HostKey {{ hostkey }}
@@ -44,17 +63,18 @@ HostKey {{ hostkey }}
 {% for hostkey in openssh_server_hostkeys_protocol_2 %}
 HostKey {{ hostkey }}
 {% endfor %}
-{# HostKeyAgent (not CentOS 6) #}
+{% if openssh_server_host_key_agent %}
+HostKeyAgent {{ openssh_server_host_key_agent }}
+{% endif %}
 IgnoreRhosts {{ openssh_server_ignore_rhosts }}
 IgnoreUserKnownHosts {{ openssh_server_ignore_user_known_hosts }}
-{# IPQoS {{ openssh_server_ipqos }} (not CentOS 6) #}
-{# KbdInteractiveAuthentication {{ openssh_server_kdb_interactive_authentication }} (not CentOS 6-7) #}
+IPQoS {{ openssh_server_ipqos }}
+KbdInteractiveAuthentication {{ openssh_server_kdb_interactive_authentication }}
 KerberosAuthentication {{ openssh_server_kerberos_authentication }}
 KerberosGetAFSToken {{ openssh_server_kerberos_get_afs_token }}
 KerberosOrLocalPasswd {{ openssh_server_kerberos_or_local_passwd }}
 KerberosTicketCleanup {{ openssh_server_kerberos_ticket_cleanup }}
-{# KerberosUseKuserok (only CentOS 7) #}
-KexAlgorithms {{ openssh_server_kex_algorithms }}
+KexAlgorithms {{ openssh_server_kex_algorithms | join(",") }}
 KeyRegenerationInterval {{ openssh_server_key_regeneration_interval }}
 Port {{ openssh_server_port }}
 {% for address in openssh_server_listen_addresses %}
@@ -62,8 +82,7 @@ ListenAddress {{ address }}
 {% endfor %}
 LoginGraceTime {{ openssh_server_login_grace_time }}
 LogLevel {{ openssh_server_log_level }}
-MACs {{ openssh_server_macs }}
-#Match
+MACs {{ openssh_server_macs | join(",") }}
 MaxAuthTries {{ openssh_server_max_auth_tries }}
 MaxSessions {{ openssh_server_max_sessions }}
 MaxStartups {{ openssh_server_max_startups }}
@@ -72,40 +91,43 @@ PermitEmptyPasswords {{ openssh_server_permit_empty_passwords }}
 PermitOpen {{ openssh_server_permit_open }}
 PermitRootLogin {{ openssh_server_permit_root_login }}
 PermitTunnel {{ openssh_server_permit_tunnel }}
-{# PermitTTY {{ openssh_server_permit_tty }} (not CentOS 6-7) #}
+PermitTTY {{ openssh_server_permit_tty }}
 PermitUserEnvironment {{ openssh_server_permit_user_environment }}
 PidFile {{ openssh_server_pid_file }}
 PrintLastLog {{ openssh_server_print_last_log }}
 PrintMotd {{ openssh_server_print_motd }}
 Protocol {{ openssh_server_protocol }}
 PubkeyAuthentication {{ openssh_server_pubkey_authentication }}
-{# RekeyLimit {{ openssh_server_rekey_limit }} (not CentOS 6) #}
-{# RequiredAuthentications1 (only CentOS 6) #}
-{# RequiredAuthentications2 (only CentOS 6) #}
-#RevokedKeys
+RekeyLimit {{ openssh_server_rekey_limit }}
+{% if openssh_server_revoked_keys %}
+RevokedKeys {{ openssh_server_revoked_keys }}
+{% endif %}
 RhostsRSAAuthentication {{ openssh_server_rhosts_rsa_authentication }}
 RSAAuthentication {{ openssh_server_rsa_authentication }}
 ServerKeyBits {{ openssh_server_key_bits }}
-{# ShowPatchLevel (only CentOS 6-7) #}
 StrictModes {{ openssh_server_strict_modes }}
+{% if openssh_server_subsystem %}
 Subsystem {{ openssh_server_subsystem }}
+{% endif %}
 SyslogFacility {{ openssh_server_syslog_facility }}
 TCPKeepAlive {{ openssh_server_tcp_keep_alive }}
-#TrustedUserCAKeys
+{% if openssh_server_trusted_ca_keys %}
+TrustedUserCAKeys {{ openssh_server_trusted_ca_keys }}
+{% endif %}
 UseDNS {{ openssh_server_use_dns }}
 UseLogin {{ openssh_server_use_login }}
 UsePAM {{ openssh_server_use_pam }}
 UsePrivilegeSeparation {{ openssh_server_use_privilege_separation }}
-{# VersionAddendum {{ openssh_server_version_addendum }} (not CentOS 6) #}
+VersionAddendum {{ openssh_server_version_addendum }}
 X11DisplayOffset {{ openssh_server_x11_display_offset }}
 X11Forwarding {{ openssh_server_x11_forwarding }}
 X11UseLocalhost {{ openssh_server_x11_use_localhost }}
 XAuthLocation {{ openssh_server_xauth_location }}
 
 Match Group {{ openssh_server_sftp_group }}
-  {% if openssh_server_sftp_chroot_directory != '' -%}
+{% if openssh_server_sftp_chroot_directory %}
   ChrootDirectory {{ openssh_server_sftp_chroot_directory }}
-  {% endif -%}
+{% endif %}
   AllowTCPForwarding no
   X11Forwarding no
   ForceCommand {{ openssh_server_subsystem.split(' ')[1] }}

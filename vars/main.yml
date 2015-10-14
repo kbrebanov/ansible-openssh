@@ -4,7 +4,7 @@
 openssh_server_config_file: /etc/ssh/sshd_config
 openssh_server_config_file_owner: root
 openssh_server_config_file_group: root
-openssh_server_config_file_mode: "0600"
+openssh_server_config_file_mode: "0644"
 
 openssh_client_config_file: /etc/ssh/ssh_config
 openssh_client_config_file_owner: root
