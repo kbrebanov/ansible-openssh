@@ -101,6 +101,7 @@ Host *
     Tunnel {{ openssh_client_tunnel }}
     TunnelDevice {{ openssh_client_tunnel_device }}
     UsePrivilegedPort {{ openssh_client_use_privileged_port }}
+    UseRoaming {{ openssh_client_use_roaming }}
 {# User #}
     UserKnownHostsFile {{ openssh_client_user_known_hosts_file | join(" ") }}
     VerifyHostKeyDNS {{ openssh_client_verify_host_key_dns }}

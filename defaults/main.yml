@@ -270,6 +270,7 @@ openssh_client_tcp_keep_alive: "yes"
 openssh_client_tunnel: "no"
 openssh_client_tunnel_device: "any:any"
 openssh_client_use_privileged_port: "no"
+openssh_client_use_roaming: "no"
 openssh_client_user_known_hosts_file:
   - "~/.ssh/known_hosts"
   - "~/.ssh/known_hosts2"
