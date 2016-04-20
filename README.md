@@ -181,24 +181,29 @@ Example Playbook
 ----------------
 
 Install OpenSSH with default settings.
-```
+```yaml
 - hosts: all
   roles:
-    - { role: kbrebanov.openssh }
+    - kbrebanov.openssh
 ```
 
 Install OpenSSH and specify different port
-```
+```yaml
 - hosts: all
+  vars:
+    openssh_server_port: 2222
   roles:
-    - { role: kbrebanov.openssh, openssh_server_port: 2222 }
+    - kbrebanov.openssh
 ```
 
 Install OpenSSH, specify different port and disable root logins
-```
+```yaml
 - hosts: all
+  vars:
+    openssh_server_port: 2222
+    openssh_server_permit_root_login: 'no'
   roles:
-    - { role: kbrebanov.openssh, openssh_server_port: 2222, openssh_server_permit_root_login: 'no' }
+    - kbrebanov.openssh
 ```
 
 License
