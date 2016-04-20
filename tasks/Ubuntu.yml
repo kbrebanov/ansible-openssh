@@ -2,6 +2,12 @@
 # tasks file for openssh (Ubuntu specific)
 
 - name: Install OpenSSH
-  apt: name={{ item }} state=present update_cache=yes
-  with_items: openssh_packages
-  tags: openssh
+  become: yes
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - "{{ openssh_packages }}"
+  tags:
+    - openssh

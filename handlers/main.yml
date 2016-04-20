@@ -2,4 +2,9 @@
 # handlers file for openssh
 
 - name: restart openssh
-  service: name={{ openssh_service_name }} state=restarted
+  become: yes
+  service:
+    name: "{{ openssh_service_name }}"
+    state: restarted
+  tags:
+    - openssh
