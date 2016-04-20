@@ -1,7 +1,7 @@
 openssh
 =======
 
-[![Ansible Role](https://img.shields.io/ansible/role/3386.svg)](https://galaxy.ansible.com/list#/roles/3386)
+[![Build Status](https://travis-ci.org/kbrebanov/ansible-openssh.svg?branch=master)](https://travis-ci.org/kbrebanov/ansible-openssh)
 
 Installs and configures OpenSSH.
 
