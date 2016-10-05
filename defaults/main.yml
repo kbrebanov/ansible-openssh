@@ -146,7 +146,7 @@ openssh_client_canonicalize_max_dots: 1
 openssh_client_canonicalize_permitted_cnames: []
 openssh_client_challenge_response_authentication: "yes"
 openssh_client_check_host_ip: "yes"
-openssh_client_cipher: "3des"
+openssh_client_cipher: "3des-cbc"
 openssh_client_ciphers:
   - "aes128-ctr"
   - "aes192-ctr"
@@ -196,15 +196,11 @@ openssh_client_host_key_algorithms:
   - "ecdsa-sha2-nistp521-cert-v01@openssh.com"
   - "ssh-ed25519-cert-v01@openssh.com"
   - "ssh-rsa-cert-v01@openssh.com"
-  - "ssh-dss-cert-v01@openssh.com"
-  - "ssh-rsa-cert-v00@openssh.com"
-  - "ssh-dss-cert-v00@openssh.com"
   - "ecdsa-sha2-nistp256"
   - "ecdsa-sha2-nistp384"
   - "ecdsa-sha2-nistp521"
   - "ssh-ed25519"
   - "ssh-rsa"
-  - "ssh-dss"
 openssh_client_identities_only: "no"
 openssh_client_identity_file_protocol_1:
   - "~/.ssh/identity"
